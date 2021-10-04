@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace Project1
 {
+    /// <summary>
+    /// Class Declaration for Form1, the main form used in the program.
+    /// </summary>
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Initializes the form that contains all information.
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
