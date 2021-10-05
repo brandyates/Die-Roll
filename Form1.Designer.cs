@@ -43,16 +43,17 @@ namespace Project1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(34, 324);
+            this.button1.Location = new System.Drawing.Point(34, 200);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 45);
             this.button1.TabIndex = 0;
             this.button1.Text = "ROLL!";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(34, 393);
+            this.button2.Location = new System.Drawing.Point(34, 265);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 45);
             this.button2.TabIndex = 1;
@@ -61,7 +62,7 @@ namespace Project1
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(205, 393);
+            this.button3.Location = new System.Drawing.Point(34, 324);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(132, 45);
             this.button3.TabIndex = 2;
@@ -70,30 +71,36 @@ namespace Project1
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(34, 138);
+            this.pictureBox1.Image = global::Project1.Properties.Resources.Face_1;
+            this.pictureBox1.InitialImage = global::Project1.Properties.Resources.Face_1;
+            this.pictureBox1.Location = new System.Drawing.Point(34, 31);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.Size = new System.Drawing.Size(112, 113);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(205, 138);
+            this.pictureBox2.Image = global::Project1.Properties.Resources.Face_1;
+            this.pictureBox2.InitialImage = global::Project1.Properties.Resources.Face_1;
+            this.pictureBox2.Location = new System.Drawing.Point(193, 31);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox2.Size = new System.Drawing.Size(111, 113);
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(205, 324);
+            this.textBox1.Location = new System.Drawing.Point(34, 388);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(132, 20);
             this.textBox1.TabIndex = 6;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(205, 349);
+            this.textBox2.Location = new System.Drawing.Point(34, 418);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(132, 20);
             this.textBox2.TabIndex = 7;
@@ -101,7 +108,7 @@ namespace Project1
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(473, 155);
+            this.listBox1.Location = new System.Drawing.Point(418, 200);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(274, 238);
             this.listBox1.TabIndex = 8;
