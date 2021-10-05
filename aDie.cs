@@ -24,20 +24,24 @@ namespace Project1
         /// Constructs a die.
         /// </summary>
         /// <param name="Seed"> The seed that is generated from a random roll.</param>
-        public aDie(int Seed)
+        public aDie()
         {
-            this.Seed = Seed;
+            //this.Seed = Seed;
         }
 
         /// <summary>
         /// Roll the dice to get a random die face.
         /// </summary>
-        /// <returns>An int representing the die face. </returns>
-        public int Roll()
+        /// <returns>An array representing the two die faces being rolled. arr[0] = face1, arr[1] = face2. </returns>
+        public int[] Roll()
         {
+            int[] faces = new int[2];
             Random rand = new Random();
             int face = rand.Next(1, 7);
-            return face;
+            int face2 = rand.Next(1, 7);
+            faces[0] = face;
+            faces[1] = face2;
+            return faces;
         }
 
 

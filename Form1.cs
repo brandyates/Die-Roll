@@ -35,7 +35,50 @@ namespace Project1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            aDie die = new aDie();
+            int[] face = die.Roll();
+            switch(face[0])
+            {
+                case 1:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_1;
+                    break;
+                case 2:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_2;
+                    break;
+                case 3:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_3;
+                    break;
+                case 4:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_4;
+                    break;
+                case 5:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_5;
+                    break;
+                case 6:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_6;
+                    break;
+            }
+            switch (face[1])
+            {
+                case 1:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_1;
+                    break;
+                case 2:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_2;
+                    break;
+                case 3:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_3;
+                    break;
+                case 4:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_4;
+                    break;
+                case 5:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_5;
+                    break;
+                case 6:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_6;
+                    break;
+            }
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
