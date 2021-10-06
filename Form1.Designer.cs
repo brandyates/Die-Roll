@@ -100,6 +100,7 @@ namespace Project1
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(79, 20);
             this.textBox1.TabIndex = 6;
+            this.textBox1.Text = "0";
             // 
             // textBox2
             // 
@@ -112,9 +113,14 @@ namespace Project1
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "60",
+            "600",
+            "6000",
+            "60000"});
             this.listBox1.Location = new System.Drawing.Point(418, 200);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(274, 238);
+            this.listBox1.Size = new System.Drawing.Size(46, 56);
             this.listBox1.TabIndex = 8;
             // 
             // label1

@@ -103,9 +103,13 @@ namespace Project1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int numberRolls = int.Parse(textBox1.Text);
+            //for(int i = 0; i < listBox1.Items.Count; i++)
+            //{
+               // if(listBox1.Items[i].Selected)
+            //}FIXTHIS
+            int numberRolls = listBox1.SelectedItem;
             aDie die = new aDie();
-            for (int i = 0; i <= numberRolls; i++)
+            for (int i = 0; i < numberRolls; i++)
             {
                 
                 int[] face = die.Roll();
