@@ -83,7 +83,75 @@ namespace Project1
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int numberRolls = int.Parse(textBox1.Text);
+            aDie die = new aDie();
+            for (int i = 0; i <= numberRolls; i++)
+            {
+                
+                int[] face = die.Roll();
+                switch (face[0])
+                {
+                    case 1:
+                        pictureBox1.Image = Project1.Properties.Resources.Face_1;
+                        break;
+                    case 2:
+                        pictureBox1.Image = Project1.Properties.Resources.Face_2;
+                        break;
+                    case 3:
+                        pictureBox1.Image = Project1.Properties.Resources.Face_3;
+                        break;
+                    case 4:
+                        pictureBox1.Image = Project1.Properties.Resources.Face_4;
+                        break;
+                    case 5:
+                        pictureBox1.Image = Project1.Properties.Resources.Face_5;
+                        break;
+                    case 6:
+                        pictureBox1.Image = Project1.Properties.Resources.Face_6;
+                        break;
+                }
+                switch (face[1])
+                {
+                    case 1:
+                        pictureBox2.Image = Project1.Properties.Resources.Face_1;
+                        break;
+                    case 2:
+                        pictureBox2.Image = Project1.Properties.Resources.Face_2;
+                        break;
+                    case 3:
+                        pictureBox2.Image = Project1.Properties.Resources.Face_3;
+                        break;
+                    case 4:
+                        pictureBox2.Image = Project1.Properties.Resources.Face_4;
+                        break;
+                    case 5:
+                        pictureBox2.Image = Project1.Properties.Resources.Face_5;
+                        break;
+                    case 6:
+                        pictureBox2.Image = Project1.Properties.Resources.Face_6;
+                        break;
+                }
+            }
         }
     }
 }
