@@ -103,13 +103,31 @@ namespace Project1
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            int[] die1 = new int[6];
+            int[] die2 = new int[6];
             int numberRolls = int.Parse(listBox1.GetItemText(listBox1.SelectedItem));
+            
+            int interval = numberRolls / 100;
+            chart1.ChartAreas[0].AxisY.Maximum = numberRolls/3;
+            
             aDie die = new aDie();
+            
+            
             for (int i = 0; i < numberRolls; i++)
             {
                 
                 int[] face = die.Roll();
+                die1[face[0]-1]++;
+                die2[face[1]-1]++;
+
+                if(i % numberRolls == interval)//FIX THIS
+                {
+                    for(int j = 1; j <= die1.Length; j++)
+                    {
+                        chart1.Series[0].Points.AddXY(j, die1[face[0]-1]);
+                        chart1.Series[1].Points.AddXY(j, die2[face[0]-1]);
+                    }
+                }
                 switch (face[0])
                 {
                     case 1:
@@ -154,5 +172,11 @@ namespace Project1
                 }
             }
         }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
