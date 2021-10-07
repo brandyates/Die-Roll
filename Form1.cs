@@ -103,11 +103,8 @@ namespace Project1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //for(int i = 0; i < listBox1.Items.Count; i++)
-            //{
-               // if(listBox1.Items[i].Selected)
-            //}FIXTHIS
-            int numberRolls = listBox1.SelectedItem;
+
+            int numberRolls = int.Parse(listBox1.GetItemText(listBox1.SelectedItem));
             aDie die = new aDie();
             for (int i = 0; i < numberRolls; i++)
             {
