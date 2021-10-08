@@ -26,7 +26,12 @@ namespace Project1
         /// <param name="Seed"> The seed that is generated from a random roll.</param>
         public aDie()
         {
-            //this.Seed = Seed;
+            this.Seed = 999;
+        }
+
+        public aDie(int seed)
+        {
+            this.Seed = seed;
         }
 
         /// <summary>
@@ -36,7 +41,7 @@ namespace Project1
         public int[] Roll()
         {
             int[] faces = new int[2];
-            Random rand = new Random();
+            Random rand = new Random(Seed);
             int face = rand.Next(1, 7);
             int face2 = rand.Next(1, 7);
             faces[0] = face;

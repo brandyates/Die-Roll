@@ -108,24 +108,28 @@ namespace Project1
             int numberRolls = int.Parse(listBox1.GetItemText(listBox1.SelectedItem));
             
             int interval = numberRolls / 100;
+            if(interval == 0)
+            {
+                interval = 1;
+            }
             chart1.ChartAreas[0].AxisY.Maximum = numberRolls/3;
             
             aDie die = new aDie();
             
-            
+            //DIE ARE NOT FAIR YET
             for (int i = 0; i < numberRolls; i++)
             {
                 
                 int[] face = die.Roll();
                 die1[face[0]-1]++;
                 die2[face[1]-1]++;
-
-                if(i % numberRolls == interval)//FIX THIS
-                {
-                    for(int j = 1; j <= die1.Length; j++)
+                if(i % interval  == 0)//FIX THIS
+                { 
+                    for (int j = 1; j <= die1.Length; j++)//fix this too
                     {
                         chart1.Series[0].Points.AddXY(j, die1[face[0]-1]);
-                        chart1.Series[1].Points.AddXY(j, die2[face[0]-1]);
+                        chart1.Series[1].Points.AddXY(j, die2[face[1] - 1]);
+                        chart1.Update();
                     }
                 }
                 switch (face[0])
