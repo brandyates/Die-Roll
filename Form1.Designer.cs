@@ -43,6 +43,7 @@ namespace Project1
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -60,7 +61,7 @@ namespace Project1
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(34, 272);
+            this.button2.Location = new System.Drawing.Point(34, 348);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 45);
             this.button2.TabIndex = 1;
@@ -76,6 +77,7 @@ namespace Project1
             this.button3.TabIndex = 2;
             this.button3.Text = "RESET";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox1
             // 
@@ -101,7 +103,7 @@ namespace Project1
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(87, 389);
+            this.textBox2.Location = new System.Drawing.Point(72, 422);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(79, 20);
             this.textBox2.TabIndex = 7;
@@ -115,7 +117,7 @@ namespace Project1
             "600",
             "6000",
             "60000"});
-            this.listBox1.Location = new System.Drawing.Point(193, 272);
+            this.listBox1.Location = new System.Drawing.Point(181, 337);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(46, 56);
             this.listBox1.TabIndex = 8;
@@ -123,7 +125,7 @@ namespace Project1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(190, 256);
+            this.label1.Location = new System.Drawing.Point(178, 321);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 9;
@@ -133,7 +135,7 @@ namespace Project1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 392);
+            this.label2.Location = new System.Drawing.Point(31, 425);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 10;
@@ -162,11 +164,21 @@ namespace Project1
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(34, 250);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(132, 45);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "SUM OF 2 DICE";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -199,6 +211,7 @@ namespace Project1
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button button4;
     }
 
 }

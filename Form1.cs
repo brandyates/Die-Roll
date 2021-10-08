@@ -182,5 +182,23 @@ namespace Project1
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //Reset Dice
+            pictureBox1.Image = Project1.Properties.Resources.Face_1;
+            pictureBox2.Image = Project1.Properties.Resources.Face_1;
+
+            //Reset Chart
+            chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
+
+            //Reset Seed Text
+            textBox2.Text = "999";
+
+            //Reset Selected # of rolls
+            listBox1.SelectedIndex = 0;
+
+            //maybe reset the faces if I have to?
+        }
     }
 }
