@@ -191,6 +191,16 @@ namespace Project1
                         break;
                 }
             }
+            chart1.Update();
+            int[] min = new int[2];
+            min = findMin(die1, die2);
+            int[] max = new int[2];
+            max = findMax(die1, die2);
+            float mean = findMean(die1, die2, numberRolls);
+
+            MessageBox.Show("MEAN: " + mean.ToString() + "\n" + 
+                          "MININUM VALUE: " + min[0].ToString() + " (FACE " + min[1].ToString() + ")\n" + 
+                          "MAXIMUIM VALUE: " + max[0].ToString() + " (FACE " + max[1].ToString() + ")");
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -216,35 +226,36 @@ namespace Project1
 
             //maybe reset the faces if I have to?
         }
-
+        
+        //FIX THIS
         private int[] findMax(int[] array1, int[]array2)
         {
             int[] max = new int[2];
-            for(int i = 0; i <= array1.Length; i++)
+            for(int i = 0; i < array1.Length; i++)
             {
-                if(array1[i] > max[0] && array1[i] > array2[i])
+                if(array1[i] > max[0] && array1[i] >= array2[i])
                 {
                     max[0] = array1[i];
-                    max[1] = i;
+                    max[1] = i + 1;
                 }
-                if(array2[i] > max[0] && array2[i] > array1[i])
+                if(array2[i] > max[0] && array2[i] >= array1[i])
                 {
                     max[0] = array2[i];
-                    max[1] = i;
+                    max[1] = i + 1;
                 }
             }
             return max;
         }
 
-        private int findMean(int[] array1, int[] array2, int iterations)
+        private float findMean(int[] array1, int[] array2, int iterations)
         {
-            int mean = 0;
+            float mean = 0;
             int total = 0;
             
-            for(int i = 0; i <= array1.Length; i++)
+            for(int i = 0; i < array1.Length; i++)
             {
-                total += array1[i];
-                total += array2[i];
+                total += (array1[i] * i);
+                total += (array2[i] * i);
             }
             mean = total / (iterations * 2);
             return mean;
@@ -254,17 +265,17 @@ namespace Project1
         {
             int[] min = new int[2];
             min[0] = 999999999;
-            for (int i = 0; i <= array1.Length; i++)
+            for (int i = 0; i < array1.Length; i++)
             {
-                if (array1[i] < min[0] && array1[i] < array2[i])
+                if (array1[i] < min[0] && array1[i] <= array2[i])
                 {
                     min[0] = array1[i];
-                    min[1] = i;
+                    min[1] = i + 1;
                 }
-                if (array2[i] < min[0] && array2[i] < array1[i])
+                if (array2[i] < min[0] && array2[i] <= array1[i])
                 {
                     min[0] = array2[i];
-                    min[1] = i;
+                    min[1] = i + 1;
                 }
             }
             return min;
