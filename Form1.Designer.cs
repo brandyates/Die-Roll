@@ -29,10 +29,10 @@ namespace Project1
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@ namespace Project1
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(193, 174);
+            this.button3.Location = new System.Drawing.Point(34, 225);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(132, 45);
             this.button3.TabIndex = 2;
@@ -117,7 +117,7 @@ namespace Project1
             "600",
             "6000",
             "60000"});
-            this.listBox1.Location = new System.Drawing.Point(181, 337);
+            this.listBox1.Location = new System.Drawing.Point(181, 313);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(46, 56);
             this.listBox1.TabIndex = 8;
@@ -125,7 +125,7 @@ namespace Project1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(178, 321);
+            this.label1.Location = new System.Drawing.Point(178, 297);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 9;
@@ -143,22 +143,22 @@ namespace Project1
             // 
             // chart1
             // 
-            chartArea1.AxisX.Maximum = 7D;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.AxisX.Maximum = 7D;
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(331, 138);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Die 1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Die 2";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Die 1";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Die 2";
+            this.chart1.Series.Add(series5);
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
@@ -166,12 +166,13 @@ namespace Project1
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(34, 250);
+            this.button4.Location = new System.Drawing.Point(34, 297);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(132, 45);
             this.button4.TabIndex = 12;
             this.button4.Text = "SUM OF 2 DICE";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 

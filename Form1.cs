@@ -138,15 +138,9 @@ namespace Project1
                 die2[face[1]-1]++;
                 chart1.Series[0].Points.AddXY(face[0], die1[face[0]-1]);
                 chart1.Series[1].Points.AddXY(face[1], die2[face[1]-1]);
-                if (i % interval  == 0)//FIX THIS
+                if (i % interval  == 0)
                 {
                     chart1.Update();
-                    //for (int j = 1; j <= die1.Length; j++)//fix this too
-                    //{
-                        //chart1.Series[0].Points.AddXY(j, die1[j-1]);
-                        //chart1.Series[1].Points.AddXY(j, die2[j - 1]);
-                        //chart1.Update();
-                    //}
                 }
                 switch (face[0])
                 {
@@ -199,8 +193,8 @@ namespace Project1
             float mean = findMean(die1, die2, numberRolls);
 
             MessageBox.Show("MEAN: " + mean.ToString() + "\n" + 
-                          "MININUM VALUE: " + min[0].ToString() + " (FACE " + min[1].ToString() + ")\n" + 
-                          "MAXIMUIM VALUE: " + max[0].ToString() + " (FACE " + max[1].ToString() + ")");
+                          "MININUM COUNT: " + min[0].ToString() + " (FACE " + min[1].ToString() + ")\n" + 
+                          "MAXIMUIM COUNT: " + max[0].ToString() + " (FACE " + max[1].ToString() + ")");
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -217,6 +211,8 @@ namespace Project1
             //Reset Chart
             chart1.Series[0].Points.Clear();
             chart1.Series[1].Points.Clear();
+            chart1.ChartAreas[0].AxisX.Maximum = 7;
+            chart1.ChartAreas[0].AxisX.Minimum = 0;
 
             //Reset Seed Text
             textBox2.Text = "999";
@@ -224,7 +220,7 @@ namespace Project1
             //Reset Selected # of rolls
             listBox1.SelectedIndex = 0;
 
-            //maybe reset the faces if I have to?
+            
         }
         
         //FIX THIS
@@ -279,6 +275,51 @@ namespace Project1
                 }
             }
             return min;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int seed;
+            if (String.IsNullOrEmpty(textBox2.Text) || textBox2.Text == "999")
+            {
+                seed = 999;
+            }
+            else
+            {
+                seed = int.Parse(textBox2.Text);
+            }
+
+            aDie die = new aDie(seed);
+
+            int[] sum = new int[12];
+            int numberRolls = int.Parse(listBox1.GetItemText(listBox1.SelectedItem));
+
+            int interval = numberRolls / 100;
+            if (interval == 0)
+            {
+                interval = 1;
+            }
+            chart1.ChartAreas[0].AxisY.Maximum = numberRolls / 100;
+            chart1.ChartAreas[0].AxisX.Maximum = 12;
+            chart1.ChartAreas[0].AxisX.Minimum = 2;
+            int[] face = die.Roll(seed);
+            sum[face[0] + face[1]-1]++;
+
+
+            for (int i = 0; i < numberRolls; i++)
+            {
+                face[0] = aDie.rand.Next(1, 7);
+                face[1] = aDie.rand.Next(1, 7);
+                sum[face[0] + face[1]-1]++;
+                chart1.Series[0].Points.AddXY(i, sum[face[0] + face[1]-1]);
+                if (i % interval == 0)
+                {
+                    chart1.Update();
+                    
+                }
+                
+            }
+            chart1.Update();
         }
     }
 }
