@@ -103,6 +103,18 @@ namespace Project1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            int seed;
+            if (String.IsNullOrEmpty(textBox2.Text) || textBox2.Text == "999")
+            {
+                seed = 999;
+            }
+            else
+            {
+                seed = int.Parse(textBox2.Text); 
+            }
+
+            aDie die = new aDie(seed);
+
             int[] die1 = new int[6];
             int[] die2 = new int[6];
             int numberRolls = int.Parse(listBox1.GetItemText(listBox1.SelectedItem));
@@ -113,24 +125,28 @@ namespace Project1
                 interval = 1;
             }
             chart1.ChartAreas[0].AxisY.Maximum = numberRolls/3;
+            int[] face = die.Roll(seed);
+            die1[face[0] - 1]++;
+            die2[face[1] - 1]++;
             
-            aDie die = new aDie();
-            
-            //DIE ARE NOT FAIR YET
+
             for (int i = 0; i < numberRolls; i++)
             {
-                
-                int[] face = die.Roll();
+                face[0] = aDie.rand.Next(1, 7);
+                face[1] = aDie.rand.Next(1, 7);
                 die1[face[0]-1]++;
                 die2[face[1]-1]++;
-                if(i % interval  == 0)//FIX THIS
-                { 
-                    for (int j = 1; j <= die1.Length; j++)//fix this too
-                    {
-                        chart1.Series[0].Points.AddXY(j, die1[face[0]-1]);
-                        chart1.Series[1].Points.AddXY(j, die2[face[1] - 1]);
-                        chart1.Update();
-                    }
+                chart1.Series[0].Points.AddXY(face[0], die1[face[0]-1]);
+                chart1.Series[1].Points.AddXY(face[1], die2[face[1]-1]);
+                if (i % interval  == 0)//FIX THIS
+                {
+                    chart1.Update();
+                    //for (int j = 1; j <= die1.Length; j++)//fix this too
+                    //{
+                        //chart1.Series[0].Points.AddXY(j, die1[j-1]);
+                        //chart1.Series[1].Points.AddXY(j, die2[j - 1]);
+                        //chart1.Update();
+                    //}
                 }
                 switch (face[0])
                 {
@@ -199,6 +215,59 @@ namespace Project1
             listBox1.SelectedIndex = 0;
 
             //maybe reset the faces if I have to?
+        }
+
+        private int[] findMax(int[] array1, int[]array2)
+        {
+            int[] max = new int[2];
+            for(int i = 0; i <= array1.Length; i++)
+            {
+                if(array1[i] > max[0] && array1[i] > array2[i])
+                {
+                    max[0] = array1[i];
+                    max[1] = i;
+                }
+                if(array2[i] > max[0] && array2[i] > array1[i])
+                {
+                    max[0] = array2[i];
+                    max[1] = i;
+                }
+            }
+            return max;
+        }
+
+        private int findMean(int[] array1, int[] array2, int iterations)
+        {
+            int mean = 0;
+            int total = 0;
+            
+            for(int i = 0; i <= array1.Length; i++)
+            {
+                total += array1[i];
+                total += array2[i];
+            }
+            mean = total / (iterations * 2);
+            return mean;
+        }
+
+        private int[] findMin(int[] array1, int[] array2)
+        {
+            int[] min = new int[2];
+            min[0] = 999999999;
+            for (int i = 0; i <= array1.Length; i++)
+            {
+                if (array1[i] < min[0] && array1[i] < array2[i])
+                {
+                    min[0] = array1[i];
+                    min[1] = i;
+                }
+                if (array2[i] < min[0] && array2[i] < array1[i])
+                {
+                    min[0] = array2[i];
+                    min[1] = i;
+                }
+            }
+            return min;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Project1
     /// <summary>
     /// Simulates a die. Inherited from the Random class.
     /// </summary>
-    class aDie : Random
+    class aDie : aRandomVariable
     {
         /// <summary>
         /// Seed is the number used to generate the sequence of the dice roll
@@ -26,12 +26,12 @@ namespace Project1
         /// <param name="Seed"> The seed that is generated from a random roll.</param>
         public aDie()
         {
-            this.Seed = 999;
+            rand = new Random(999);
         }
 
         public aDie(int seed)
         {
-            this.Seed = seed;
+            rand = new Random(seed);
         }
 
         /// <summary>
@@ -41,7 +41,18 @@ namespace Project1
         public int[] Roll()
         {
             int[] faces = new int[2];
-            Random rand = new Random(Seed);
+            rand = new Random();
+            int face = rand.Next(1, 7);
+            int face2 = rand.Next(1, 7);
+            faces[0] = face;
+            faces[1] = face2;
+            return faces;
+        }
+
+        public int[] Roll(int seed)
+        {
+            int[] faces = new int[2];
+            rand = new Random(seed);
             int face = rand.Next(1, 7);
             int face2 = rand.Next(1, 7);
             faces[0] = face;

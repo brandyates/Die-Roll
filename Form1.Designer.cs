@@ -143,8 +143,8 @@ namespace Project1
             // 
             // chart1
             // 
-            chartArea1.AxisX.Maximum = 6D;
-            chartArea1.AxisX.Minimum = 1D;
+            chartArea1.AxisX.Maximum = 7D;
+            chartArea1.AxisX.Minimum = 0D;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
