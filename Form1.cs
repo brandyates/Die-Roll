@@ -190,11 +190,12 @@ namespace Project1
             min = findMin(die1, die2);
             int[] max = new int[2];
             max = findMax(die1, die2);
-            float mean = findMean(die1, die2, numberRolls);
+            double mean = findMean(die1, die2, numberRolls);
+ 
 
-            MessageBox.Show("MEAN: " + mean.ToString() + "\n" + 
-                          "MININUM COUNT: " + min[0].ToString() + " (FACE " + min[1].ToString() + ")\n" + 
-                          "MAXIMUIM COUNT: " + max[0].ToString() + " (FACE " + max[1].ToString() + ")");
+            MessageBox.Show("MEAN: " + mean.ToString("0.##") + "\n" + 
+                          "MINIMUM COUNT: " + min[0].ToString() + " (FACE " + min[1].ToString() + ")\n" + 
+                          "MAXIMUM COUNT: " + max[0].ToString() + " (FACE " + max[1].ToString() + ")");
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -223,7 +224,6 @@ namespace Project1
             
         }
         
-        //FIX THIS
         private int[] findMax(int[] array1, int[]array2)
         {
             int[] max = new int[2];
@@ -243,17 +243,17 @@ namespace Project1
             return max;
         }
 
-        private float findMean(int[] array1, int[] array2, int iterations)
+        private double findMean(int[] array1, int[] array2, int iterations)
         {
-            float mean = 0;
+            double mean = 0;
             int total = 0;
-            
             for(int i = 0; i < array1.Length; i++)
             {
-                total += (array1[i] * i);
-                total += (array2[i] * i);
+                total += (array1[i] * (i+1));
+                total += (array2[i] * (i+1));
             }
-            mean = total / (iterations * 2);
+            mean = (double)total / ((double)iterations * 2.0);
+            
             return mean;
         }
 
@@ -299,9 +299,9 @@ namespace Project1
             {
                 interval = 1;
             }
-            chart1.ChartAreas[0].AxisY.Maximum = numberRolls / 100;
-            chart1.ChartAreas[0].AxisX.Maximum = 12;
-            chart1.ChartAreas[0].AxisX.Minimum = 2;
+            chart1.ChartAreas[0].AxisY.Maximum = numberRolls / 3;
+            chart1.ChartAreas[0].AxisX.Maximum = 13;
+            chart1.ChartAreas[0].AxisX.Minimum = 1;
             int[] face = die.Roll(seed);
             sum[face[0] + face[1]-1]++;
 
@@ -311,8 +311,8 @@ namespace Project1
                 face[0] = aDie.rand.Next(1, 7);
                 face[1] = aDie.rand.Next(1, 7);
                 sum[face[0] + face[1]-1]++;
-                chart1.Series[0].Points.AddXY(i, sum[face[0] + face[1]-1]);
-                if (i % interval == 0)
+                chart1.Series[0].Points.AddXY(face[0] + face[1], sum[face[0] + face[1]-1]);
+                if (i % interval == 0 || i + 1 == numberRolls)
                 {
                     chart1.Update();
                     
