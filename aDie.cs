@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 namespace Project1
 {
     /// <summary>
-    /// Simulates a die. Inherited from the Random class.
+    /// Simulates a die. Inherited from the <see cref="aRandomVariable"/> class.
     /// </summary>
     class aDie : aRandomVariable
     {
-        /// <summary>
-        /// Seed is the number used to generate the sequence of the dice roll
-        /// </summary>
-        public int Seed { get; set; }
+        
         /// <summary>
         /// DieFace is the number returned to get the face of the die.
         /// </summary>
@@ -23,12 +20,15 @@ namespace Project1
         /// <summary>
         /// Constructs a die.
         /// </summary>
-        /// <param name="Seed"> The seed that is generated from a random roll.</param>
         public aDie()
         {
             rand = new Random(999);
         }
 
+        /// <summary>
+        /// Constructs a die with seed in mind.
+        /// </summary>
+        /// <param name="seed">Number used to generate random number sequence.</param>
         public aDie(int seed)
         {
             rand = new Random(seed);
@@ -49,6 +49,11 @@ namespace Project1
             return faces;
         }
 
+        /// <summary>
+        /// Rolls the dice to get a random sequence of numbers based on the seed.
+        /// </summary>
+        /// <param name="seed">A number used to generate the random sequence of numbers.</param>
+        /// <returns> An array representing the two die faces being rolled. arr[0] = face1, arr[1] = face2. </returns>
         public int[] Roll(int seed)
         {
             int[] faces = new int[2];

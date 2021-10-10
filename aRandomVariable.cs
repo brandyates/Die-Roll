@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Project1
 {
+    /// <summary>
+    /// Class that creates a static object to be used with aDie class.
+    /// This allows for only a single instance of an object and no new ones to be created.
+    /// </summary>
     public class aRandomVariable
     {
         public static Random rand;
