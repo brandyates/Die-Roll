@@ -21,92 +21,34 @@ namespace Project1
         public Form1()
         {
             InitializeComponent();
+            listBox1.SelectedIndex = 0;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             aDie die = new aDie();
             int[] face = die.Roll();
-            switch(face[0])
-            {
-                case 1:
-                    pictureBox1.Image = Project1.Properties.Resources.Face_1;
-                    break;
-                case 2:
-                    pictureBox1.Image = Project1.Properties.Resources.Face_2;
-                    break;
-                case 3:
-                    pictureBox1.Image = Project1.Properties.Resources.Face_3;
-                    break;
-                case 4:
-                    pictureBox1.Image = Project1.Properties.Resources.Face_4;
-                    break;
-                case 5:
-                    pictureBox1.Image = Project1.Properties.Resources.Face_5;
-                    break;
-                case 6:
-                    pictureBox1.Image = Project1.Properties.Resources.Face_6;
-                    break;
-            }
-            switch (face[1])
-            {
-                case 1:
-                    pictureBox2.Image = Project1.Properties.Resources.Face_1;
-                    break;
-                case 2:
-                    pictureBox2.Image = Project1.Properties.Resources.Face_2;
-                    break;
-                case 3:
-                    pictureBox2.Image = Project1.Properties.Resources.Face_3;
-                    break;
-                case 4:
-                    pictureBox2.Image = Project1.Properties.Resources.Face_4;
-                    break;
-                case 5:
-                    pictureBox2.Image = Project1.Properties.Resources.Face_5;
-                    break;
-                case 6:
-                    pictureBox2.Image = Project1.Properties.Resources.Face_6;
-                    break;
-            }
+            updateFaces(face);
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             int seed;
+            chart1.ChartAreas[0].AxisX.Maximum = 7;
+            chart1.ChartAreas[0].AxisX.Minimum = 0;
             if (String.IsNullOrEmpty(textBox2.Text) || textBox2.Text == "999")
             {
                 seed = 999;
+            }
+            if(textBox2.Text.Length > 9 || !int.TryParse(textBox2.Text, out int j))
+            {
+                MessageBox.Show("Seed was either too long or contained characters other " +
+                    "than numbers. Seed changed to default value (999).");
+                seed = 999;
+                textBox2.Text = "999";
             }
             else
             {
@@ -142,48 +84,7 @@ namespace Project1
                 {
                     chart1.Update();
                 }
-                switch (face[0])
-                {
-                    case 1:
-                        pictureBox1.Image = Project1.Properties.Resources.Face_1;
-                        break;
-                    case 2:
-                        pictureBox1.Image = Project1.Properties.Resources.Face_2;
-                        break;
-                    case 3:
-                        pictureBox1.Image = Project1.Properties.Resources.Face_3;
-                        break;
-                    case 4:
-                        pictureBox1.Image = Project1.Properties.Resources.Face_4;
-                        break;
-                    case 5:
-                        pictureBox1.Image = Project1.Properties.Resources.Face_5;
-                        break;
-                    case 6:
-                        pictureBox1.Image = Project1.Properties.Resources.Face_6;
-                        break;
-                }
-                switch (face[1])
-                {
-                    case 1:
-                        pictureBox2.Image = Project1.Properties.Resources.Face_1;
-                        break;
-                    case 2:
-                        pictureBox2.Image = Project1.Properties.Resources.Face_2;
-                        break;
-                    case 3:
-                        pictureBox2.Image = Project1.Properties.Resources.Face_3;
-                        break;
-                    case 4:
-                        pictureBox2.Image = Project1.Properties.Resources.Face_4;
-                        break;
-                    case 5:
-                        pictureBox2.Image = Project1.Properties.Resources.Face_5;
-                        break;
-                    case 6:
-                        pictureBox2.Image = Project1.Properties.Resources.Face_6;
-                        break;
-                }
+                updateFaces(face);
             }
             chart1.Update();
             int[] min = new int[2];
@@ -198,10 +99,7 @@ namespace Project1
                           "MAXIMUM COUNT: " + max[0].ToString() + " (FACE " + max[1].ToString() + ")");
         }
 
-        private void chart1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -284,6 +182,13 @@ namespace Project1
             {
                 seed = 999;
             }
+            if(textBox2.Text.Length > 9 || !int.TryParse(textBox2.Text, out int j))
+            {
+                MessageBox.Show("Seed was either too long or contained characters other " +
+                    "than numbers. Seed changed to default value (999).");
+                seed = 999;
+                textBox2.Text = "999";
+            }
             else
             {
                 seed = int.Parse(textBox2.Text);
@@ -310,6 +215,7 @@ namespace Project1
             {
                 face[0] = aDie.rand.Next(1, 7);
                 face[1] = aDie.rand.Next(1, 7);
+                updateFaces(face);
                 sum[face[0] + face[1]-1]++;
                 chart1.Series[0].Points.AddXY(face[0] + face[1], sum[face[0] + face[1]-1]);
                 if (i % interval == 0 || i + 1 == numberRolls)
@@ -320,6 +226,52 @@ namespace Project1
                 
             }
             chart1.Update();
+        }
+
+        private void updateFaces(int [] face)
+        {
+            switch (face[0])
+            {
+                case 1:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_1;
+                    break;
+                case 2:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_2;
+                    break;
+                case 3:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_3;
+                    break;
+                case 4:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_4;
+                    break;
+                case 5:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_5;
+                    break;
+                case 6:
+                    pictureBox1.Image = Project1.Properties.Resources.Face_6;
+                    break;
+            }
+            switch (face[1])
+            {
+                case 1:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_1;
+                    break;
+                case 2:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_2;
+                    break;
+                case 3:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_3;
+                    break;
+                case 4:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_4;
+                    break;
+                case 5:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_5;
+                    break;
+                case 6:
+                    pictureBox2.Image = Project1.Properties.Resources.Face_6;
+                    break;
+            }
         }
     }
 }
