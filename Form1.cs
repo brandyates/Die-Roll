@@ -25,20 +25,21 @@ namespace Project1
         }
 
         /// <summary>
-        /// Event Handler for a Click of the button_Roll button. Rolls two random numbers on the dice.
+        /// Event Handler for a Click of the <see cref="button_Roll"/> button. Rolls two random numbers on the dice.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             aDie die = new aDie();
-            int[] face = die.Roll();
-            updateFaces(face);
+            int face1 = die.Roll();
+            int face2 = die.Roll();
+            updateFaces(face1, face2);
         }
 
 
         /// <summary>
-        /// Event handler for a click of <see cref="button_Roll"/>. Interfaces with listBox_Rolls to determine number of rolls and calculates statistics
+        /// Event handler for a click of <see cref="button_Stats"/>. Interfaces with listBox_Rolls to determine number of rolls and calculates statistics
         /// such as maximum count, minimum count, and the mean of all dice.
         /// </summary>
         /// <param name="sender"></param>
@@ -49,6 +50,12 @@ namespace Project1
             //Set maximum and minimum chart areas
             chart1.ChartAreas[0].AxisX.Maximum = 7;
             chart1.ChartAreas[0].AxisX.Minimum = 0;
+
+            //change chart labels
+            chart1.Series[0].LegendText = "Die 1";
+            //add new series if it does not exist yet
+            if(chart1.Series.IndexOf("Die 2") == -1)
+                chart1.Series.Add("Die 2");
 
             int seed = getSeed();
 
@@ -73,25 +80,29 @@ namespace Project1
             chart1.ChartAreas[0].AxisY.Maximum = numberRolls/3;
 
             //roll the dice
-            int[] face = die.Roll(seed);
+            int face1 = die.Roll();
+            int face2 = die.Roll();
 
             //update face count of each die
-            die1[face[0] - 1]++;
-            die2[face[1] - 1]++;
+            die1[face1 - 1]++;
+            die2[face2 - 1]++;
             
 
             for (int i = 0; i < numberRolls; i++)
             {
                 //get next faces
-                face[0] = aDie.rand.Next(1, 7);
-                face[1] = aDie.rand.Next(1, 7);
-                //update faces
-                die1[face[0]-1]++;
-                die2[face[1]-1]++;
+                face1 = die.Roll();
+                //update face count
+                die1[face1-1]++;
+                //add face count to chart
+                chart1.Series[0].Points.AddXY(face1, die1[face1 - 1]);
+                face2 = die.Roll();
+                die2[face2-1]++;
+                chart1.Series[1].Points.AddXY(face2, die2[face2 - 1]);
 
                 //add new faces to chart
-                chart1.Series[0].Points.AddXY(face[0], die1[face[0]-1]);
-                chart1.Series[1].Points.AddXY(face[1], die2[face[1]-1]);
+
+
 
                 //update chart every interval
                 if (i % interval  == 0)
@@ -99,7 +110,7 @@ namespace Project1
                     chart1.Update();
                 }
 
-                updateFaces(face);
+                updateFaces(face1, face2);
             }
 
             //update chart at the end of the rolls
@@ -136,7 +147,8 @@ namespace Project1
 
             //Reset Chart
             chart1.Series[0].Points.Clear();
-            chart1.Series[1].Points.Clear();
+            if(chart1.Series.IndexOf("Die 2") != -1)
+                chart1.Series[1].Points.Clear();
             chart1.ChartAreas[0].AxisX.Maximum = 7;
             chart1.ChartAreas[0].AxisX.Minimum = 0;
 
@@ -240,7 +252,9 @@ namespace Project1
         private void button4_Click(object sender, EventArgs e)
         {
             int seed = getSeed();
-            
+            //change chart to update new series
+            chart1.Series.RemoveAt(1);
+            chart1.Series[0].LegendText = "Sum of 2 dice";
             //Create new die
             aDie die = new aDie(seed);
 
@@ -262,26 +276,27 @@ namespace Project1
             chart1.ChartAreas[0].AxisX.Minimum = 1;
 
             //roll dice and get faces
-            int[] face = die.Roll(seed);
+            int face1 = die.Roll();
+            int face2 = die.Roll();
 
             //update sum counts
-            sum[face[0] + face[1]-1]++;
+            sum[(face1 + face2)-1]++;
 
 
             for (int i = 0; i < numberRolls; i++)
             {
                 //get next faces
-                face[0] = aDie.rand.Next(1, 7);
-                face[1] = aDie.rand.Next(1, 7);
+                face1 = die.Roll();
+                face2 = die.Roll();
 
                 //update die faces
-                updateFaces(face);
+                updateFaces(face1, face2);
 
                 //update sum counts
-                sum[face[0] + face[1]-1]++;
+                sum[(face1 + face2)-1]++;
 
                 //update chart counts
-                chart1.Series[0].Points.AddXY(face[0] + face[1], sum[face[0] + face[1]-1]);
+                chart1.Series[0].Points.AddXY((face1 + face2), sum[(face1 + face2)-1]);
 
                 //update chart every interval
                 if (i % interval == 0 || i + 1 == numberRolls)
@@ -300,10 +315,10 @@ namespace Project1
         /// Visually updates the die faces.
         /// </summary>
         /// <param name="face">Contains the face for both dice.</param>
-        private void updateFaces(int [] face)
+        private void updateFaces(int face1, int face2)
         {
             //update die 1
-            switch (face[0])
+            switch (face1)
             {
                 case 1:
                     pictureBox_Die1.Image = Project1.Properties.Resources.Face_1;
@@ -326,7 +341,7 @@ namespace Project1
             }
 
             //update die 2
-            switch (face[1])
+            switch (face2)
             {
                 case 1:
                     pictureBox_Die2.Image = Project1.Properties.Resources.Face_1;

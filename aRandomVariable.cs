@@ -12,7 +12,6 @@ namespace Project1
     /// </summary>
     public class aRandomVariable
     {
-        public static Random rand;
-        
+        protected static Random rand;
     }
 }

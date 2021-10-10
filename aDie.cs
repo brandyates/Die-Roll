@@ -11,18 +11,20 @@ namespace Project1
     /// </summary>
     class aDie : aRandomVariable
     {
-        
+
         /// <summary>
         /// DieFace is the number returned to get the face of the die.
         /// </summary>
-        public int DieFace { get; set; }
-
+        public int[] faces = new int[2];
+        public int face { get; set; }
+        public int face2 { get; set; }
+        public int seed { get; set; }
         /// <summary>
         /// Constructs a die.
         /// </summary>
         public aDie()
         {
-            rand = new Random(999);
+            rand = new Random();
         }
 
         /// <summary>
@@ -38,15 +40,11 @@ namespace Project1
         /// Roll the dice to get a random die face.
         /// </summary>
         /// <returns>An array representing the two die faces being rolled. arr[0] = face1, arr[1] = face2. </returns>
-        public int[] Roll()
+        public int Roll()
         {
-            int[] faces = new int[2];
-            rand = new Random();
-            int face = rand.Next(1, 7);
-            int face2 = rand.Next(1, 7);
-            faces[0] = face;
-            faces[1] = face2;
-            return faces;
+            face = rand.Next(1, 7);
+            
+            return face;
         }
 
         /// <summary>
@@ -54,16 +52,11 @@ namespace Project1
         /// </summary>
         /// <param name="seed">A number used to generate the random sequence of numbers.</param>
         /// <returns> An array representing the two die faces being rolled. arr[0] = face1, arr[1] = face2. </returns>
-        public int[] Roll(int seed)
+        /*public int Roll(int seed)
         {
-            int[] faces = new int[2];
-            rand = new Random(seed);
-            int face = rand.Next(1, 7);
-            int face2 = rand.Next(1, 7);
-            faces[0] = face;
-            faces[1] = face2;
-            return faces;
-        }
+            face = rand_seed.Next(1, 7);
+            return face;
+        }*/
 
 
     }
