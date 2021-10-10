@@ -15,10 +15,8 @@ namespace Project1
         /// <summary>
         /// DieFace is the number returned to get the face of the die.
         /// </summary>
-        public int[] faces = new int[2];
-        public int face { get; set; }
-        public int face2 { get; set; }
-        public int seed { get; set; }
+        private int face { get; set; }
+
         /// <summary>
         /// Constructs a die.
         /// </summary>
@@ -39,7 +37,7 @@ namespace Project1
         /// <summary>
         /// Roll the dice to get a random die face.
         /// </summary>
-        /// <returns>An array representing the two die faces being rolled. arr[0] = face1, arr[1] = face2. </returns>
+        /// <returns>A random number that is next in the seed. </returns>
         public int Roll()
         {
             face = rand.Next(1, 7);
@@ -47,16 +45,7 @@ namespace Project1
             return face;
         }
 
-        /// <summary>
-        /// Rolls the dice to get a random sequence of numbers based on the seed.
-        /// </summary>
-        /// <param name="seed">A number used to generate the random sequence of numbers.</param>
-        /// <returns> An array representing the two die faces being rolled. arr[0] = face1, arr[1] = face2. </returns>
-        /*public int Roll(int seed)
-        {
-            face = rand_seed.Next(1, 7);
-            return face;
-        }*/
+
 
 
     }

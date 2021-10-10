@@ -253,7 +253,8 @@ namespace Project1
         {
             int seed = getSeed();
             //change chart to update new series
-            chart1.Series.RemoveAt(1);
+            if(chart1.Series.Count > 1)
+                chart1.Series.RemoveAt(1);
             chart1.Series[0].LegendText = "Sum of 2 dice";
             //Create new die
             aDie die = new aDie(seed);
