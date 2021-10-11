@@ -13,7 +13,7 @@ namespace Project1
     {
 
         /// <summary>
-        /// DieFace is the number returned to get the face of the die.
+        /// Represents the random number that represents the die face.
         /// </summary>
         private int face { get; set; }
 
@@ -40,6 +40,7 @@ namespace Project1
         /// <returns>A random number that is next in the seed. </returns>
         public int Roll()
         {
+            //get the next random number in the sequence
             face = rand.Next(1, 7);
             
             return face;

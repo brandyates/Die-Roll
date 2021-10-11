@@ -27,13 +27,18 @@ namespace Project1
         /// <summary>
         /// Event Handler for a Click of the <see cref="button_Roll"/> button. Rolls two random numbers on the dice.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Reference to the Object <see cref="button_Roll"/>that called the function</param>
+        /// <param name="e">Event data</param>
         private void button1_Click(object sender, EventArgs e)
         {
+            //create a new die
             aDie die = new aDie();
+
+            //get the die faces
             int face1 = die.Roll();
             int face2 = die.Roll();
+            
+            //update pictures to show the correct faces
             updateFaces(face1, face2);
         }
 
@@ -42,8 +47,8 @@ namespace Project1
         /// Event handler for a click of <see cref="button_Stats"/>. Interfaces with listBox_Rolls to determine number of rolls and calculates statistics
         /// such as maximum count, minimum count, and the mean of all dice.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Reference to the Object <see cref="button_Stats"/>that called the function</param>
+        /// <param name="e">Event data</param>
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -57,6 +62,7 @@ namespace Project1
             if(chart1.Series.IndexOf("Die 2") == -1)
                 chart1.Series.Add("Die 2");
 
+            
             int seed = getSeed();
 
 
@@ -96,11 +102,12 @@ namespace Project1
                 die1[face1-1]++;
                 //add face count to chart
                 chart1.Series[0].Points.AddXY(face1, die1[face1 - 1]);
+                //get next faces
                 face2 = die.Roll();
+                //update face count
                 die2[face2-1]++;
+                //add face count to chart
                 chart1.Series[1].Points.AddXY(face2, die2[face2 - 1]);
-
-                //add new faces to chart
 
 
 
@@ -137,8 +144,8 @@ namespace Project1
         /// <summary>
         /// Event handler for button click for <see cref="button_Reset"/>. Resets everything in the form.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Reference to the Object <see cref="button_Reset"/>that called the function</param>
+        /// <param name="e">Event data</param>
         private void button3_Click(object sender, EventArgs e)
         {
             //Reset Dice
